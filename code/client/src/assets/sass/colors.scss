@@ -1,0 +1,21 @@
+$base: green;
+$main: blue;
+$accent: red;
+$black: black;
+$white: white;
+
+// base
+.c-base{ color: $base; }
+.bg-base{ background: $base; }
+// main
+.c-main{ color: $main; }
+.bg-main{ background: $main; }
+// accent
+.c-accent{ color: $accent; }
+.bg-accent{ background: $accent; }
+// black
+.c-black{ color: $black; }
+.bg-black{ background: $black; }
+// white
+.c-white{ color: $white; }
+.bg-white{ background: $white; }
