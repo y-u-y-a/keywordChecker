@@ -83,3 +83,8 @@ Go：マップ表示、〜行きたい
 - ユーザーニーズ
 これから
 - 検索結果の構成予測
+
+# コマンドなど
+```
+$ dock_exec keywordChecker_server python3 main.py
+```

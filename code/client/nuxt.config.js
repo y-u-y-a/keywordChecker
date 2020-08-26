@@ -5,7 +5,8 @@ export default {
   ** See https://nuxtjs.org/api/configuration-mode
   */
   mode: 'universal',
-  srcDir: 'src/',   // 追加
+  srcDir: 'src/', // 追加
+
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -30,6 +31,7 @@ export default {
   ** Global CSS
   */
   css: [
+    './src/assets/sass/app.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -51,6 +53,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    ['bootstrap-vue/nuxt', {css: false}]
   ],
   /*
   ** Build configuration
