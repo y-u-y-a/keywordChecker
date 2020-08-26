@@ -1,3 +1,5 @@
+// 分割代入(配列やオブジェクトの中身を順番に取り出す)
+const { PROJECT_NAME, API_URL } = process.env;
 
 export default {
   /*
@@ -44,21 +46,30 @@ export default {
   ** See https://nuxtjs.org/api/configuration-components
   */
   components: true,
-  /*
-  ** Nuxt.js dev-modules
-  */
+
   buildModules: [
   ],
-  /*
-  ** Nuxt.js modules
-  */
+
   modules: [
-    ['bootstrap-vue/nuxt', {css: false}]
+    ['bootstrap-vue/nuxt', {css: false}],
+    '@nuxtjs/axios',
+    '@nuxtjs/dotenv'
   ],
-  /*
-  ** Build configuration
-  ** See https://nuxtjs.org/api/configuration-build/
-  */
+  env: {
+    PROJECT_NAME,
+    API_URL
+  },
+
+  // 参照：https://axios.nuxtjs.org/options
+  axios: {
+    proxy: true
+  },
+
+  // key名の先頭にvalue部分が追加される(例：'/api/v2/items')
+  proxy: {
+    '/api/': process.env.API_URL
+  },
+
   build: {
   }
 }

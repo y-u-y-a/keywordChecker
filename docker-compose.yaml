@@ -20,6 +20,8 @@ services:
       - 8000:8000
     working_dir: /code # コンテナ起動時のディレクトリを指定
     tty: true # コンテナを立ち上げっぱなしにする（ttyとは、標準出力の接続先デバイス）
+    networks:
+      - default
     # depends_on:
     #   - mysql
 
@@ -29,8 +31,11 @@ services:
       context: ./code/client
     ports:
       - 3000:80
+    networks:
+      - default
 
 
+# defaultのネットワークを使用
 networks:
   default:
     external: false
@@ -42,3 +47,12 @@ volumes:
 # volumes:
 #   mysql-data:
 #     external: false
+# デフォルトだと無名のVolume(データの永続化領域)が生成してしまうので明示
+# servicesで指定するvolumes(バインドマウント)とは無関係
+# external:で外部で作成しているプロジェクト用MySQLのボリュームを指定
+# dooker downで削除しても消えない
+# (既存のボリュームを指定する場合)
+# volumes:
+#   mysql-data:
+#     external:
+#       name: project-mysql
