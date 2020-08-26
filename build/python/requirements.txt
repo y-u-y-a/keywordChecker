@@ -1,0 +1,6 @@
+requests==2.22.0
+beautifulsoup4
+lxml
+pyquery
+selenium
+scrapy
