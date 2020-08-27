@@ -1,0 +1,104 @@
+/* ===============
+height系(rem指定)
+width系(rem指定)
+width系
+padding系
+margin系
+=============== */
+/*====================
+height・width(px)
+=====================*/
+@for $i from 0 through 125 {
+  .height-#{$i} {
+    height: $i * 1px !important;
+    max-height: $i * 1px !important;
+  }
+  .width-#{$i} {
+    width: $i * 1px !important;
+    max-width: $i * 1px !important;
+  }
+}
+/*====================
+height・width(%)
+=====================*/
+[class*="wm-"]{ margin: 0 auto !important; }
+@for $i from 0 through 100 {
+  .h-#{$i} { height: $i * 1% !important; }
+  .w-#{$i},
+  .wm-#{$i} { width: $i * 1% !important; }
+}
+
+/*====================
+padding系
+=====================*/
+.p-025{ padding: 0.25rem !important; }
+.p-05{ padding: 0.5rem !important; }
+// 左
+.pl-025,
+.px-025{ padding-left: 0.25rem !important; }
+.pl-05,
+.px-05{ padding-left: 0.5rem !important; }
+// 右
+.pr-025,
+.px-025{ padding-right: 0.25rem !important; }
+.pr-05,
+.px-05{ padding-right: 0.5rem !important; }
+// 上
+.pt-025,
+.py-025{ padding-top: 0.25rem !important; }
+.pt-05,
+.py-05{ padding-top: 0.5rem !important; }
+// 下
+.pb-025,
+.py-025{ padding-bottom: 0.25rem !important; }
+.pb-05,
+.py-05{ padding-bottom: 0.5rem !important; }
+
+@for $i from 0 through 10 {
+.p-#{$i} { padding: $i * 1rem !important; }
+.pl-#{$i},
+.px-#{$i} { padding-left: $i * 1rem !important; }
+.pr-#{$i},
+.px-#{$i} { padding-right: $i * 1rem !important; }
+.pt-#{$i},
+.py-#{$i} { padding-top: $i * 1rem !important; }
+.pb-#{$i},
+.py-#{$i} { padding-bottom: $i * 1rem !important; }
+}
+/*====================
+margin系
+=====================*/
+.m-025{ margin: 0.25rem !important; }
+.m-05{ margin: 0.5rem !important; }
+// 左
+.ml-025,
+.mx-025{ margin-left: 0.25rem !important; }
+.ml-05,
+.mx-05{ margin-left: 0.5rem !important; }
+// 右
+.mr-025,
+.mx-025{ margin-right: 0.25rem !important; }
+.mr-05,
+.mx-05{ margin-right: 0.5rem !important; }
+// 上
+.mt-025,
+.my-025{ margin-top: 0.25rem !important; }
+.mt-05,
+.my-05{ margin-top: 0.5rem !important; }
+// 下
+.mb-025,
+.my-025{ margin-bottom: 0.25rem !important; }
+.mb-05,
+.my-05{ margin-bottom: 0.5rem !important; }
+
+@for $i from 0 through 10 {
+.m-#{$i} { margin: $i * 1rem !important; }
+.ml-#{$i},
+.mx-#{$i} { margin-left: $i * 1rem !important; }
+.mr-#{$i},
+.mx-#{$i} { margin-right: $i * 1rem !important; }
+.mt-#{$i},
+.my-#{$i} { margin-top: $i * 1rem !important; }
+.mb-#{$i},
+.my-#{$i} { margin-bottom: $i * 1rem !important; }
+}

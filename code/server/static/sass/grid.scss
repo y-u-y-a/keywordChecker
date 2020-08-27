@@ -1,0 +1,47 @@
+/* ===============
+flex系
+=============== */
+.container,
+.container-fluid{
+    // width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 0;
+    margin-left: 0;
+    [class*="col-"] {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+/*====================
+flex系一覧
+=====================*/
+// .d-{*}-flex
+// .d-{*}-inline-flex
+// 方向・軸
+// .flex-{*}-row
+// .flex-{*}-row-reverse
+// .flex-{*}-column
+// .flex-{*}-column-reverse
+// 横並び(軸=x)
+// .justify-content-{*}-start
+// .justify-content-{*}-end
+// .justify-content-{*}-center
+// .justify-content-{*}-between
+// .justify-content-{*}-around
+// 縦並び(軸=y)
+// .align-items-{*}-start
+// .align-items-{*}-end
+// .align-items-{*}-center
+// .align-items-{*}-baseline
+// .align-items-{*}-stretch
+// 改行
+// .flex-{*}-nowrap
+// .flex-{*}-wrap
+// .flex-{*}-wrap-reverse

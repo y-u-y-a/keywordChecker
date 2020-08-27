@@ -1,0 +1,36 @@
+/* ===============
+font系
+border系
+// スクロール系
+// shadow系
+=============== */
+
+/*====================
+font系
+=====================*/
+[class*="n-font"]{ font-weight: normal !important; }
+[class*="b-font"]{ font-weight: bold !important; }
+
+@for $i from 0 through 100 {
+  [class*="font-#{$i}"] { font-size: $i * 1px !important; }
+  .letter-#{$i} { letter-spacing: $i * 1px !important; }
+}
+
+/*====================
+border系
+=====================*/
+@for $i from 0 through 50 {
+  .solid-white-#{$i}{ border: $i * 1px solid $white; }
+  .solid-black-#{$i}{ border: $i * 1px solid $black; }
+  .solid-main-#{$i}{ border: $i * 1px solid $main; }
+  .solid-accent-#{$i}{ border: $i * 1px solid $accent; }
+  .dashed-main-#{$i}{ border: $i * 1px dashed $main; }
+  .dashed-accent-#{$i}{ border: $i * 1px dashed $accent; }
+
+  .radius-#{$i}{ border-radius: $i * 1px; }
+}
+/*====================
+scroll系
+=====================*/
+.over-scroll { overflow: scroll; }
+.over-wrap { overflow: wrap; }

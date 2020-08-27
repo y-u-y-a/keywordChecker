@@ -1,0 +1,28 @@
+// mdを基準
+@media screen and (max-width:768px){
+  .pc{ display: none; }
+}
+  @media screen and (min-width:768px){
+  .sp{ display: none; }
+}
+
+// カーソル
+.cursor { cursor: default !important;}
+.pointer { cursor: pointer !important; }
+
+// モーダル用(画面全体を覆う設定)
+.modal-default{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
+}
+
+// 文字を...に変換
+.dot{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
