@@ -2,16 +2,15 @@
 import os, pprint, csv
 # PyPI
 from flask import Flask, jsonify, render_template,request
-# 自作クラス
-from libs import scrap, parse
 # 自作モジュール
-from services import functions as func
+from libs import scrap, file
+from libs import keyword as kw
 
 
 # Flaskの標準テンプレートエンジンJinja2(/templates内を自動的に読み込む)
 app = Flask(__name__)
-# 文字化け対処
-app.config['JSON_AS_ASCII'] = False
+app.config['JSON_AS_ASCII'] = False # 文字化け対処
+
 
 # GET =====================================
 @app.route('/')
@@ -23,26 +22,33 @@ def main():
 @app.route('/form', methods=['POST'])
 def form():
     # [input]
-    url_list: list = [
-        request.form['url_1'],
-        request.form['url_2'],
-        # 'https://madalis.jp/article/seo-title/',
-        # 'https://madalis.jp/article/google-seo/',
-        # 'https://madalis.jp/article/seo-basic/'
-    ]
-    file = parse.File()
-    word_list: list = file.csvToList('file/keyword_list.csv', 2)
-    keyword_list: list = func.getKeywordList(word_list)
+    url_list: list = []
+    if request.form['url_1']:
+        url_list.append(request.form['url_1'])
+    if request.form['url_2']:
+        url_list.append(request.form['url_2'])
+    if request.form['url_3']:
+        url_list.append(request.form['url_3'])
+    if request.form['url_4']:
+        url_list.append(request.form['url_4'])
+    if request.form['url_5']:
+        url_list.append(request.form['url_5'])
+
+    get_keyword: str = 'SEO_対策'
+    if get_keyword == 'SEO_対策':
+        file_name: str = 'file/keyword_list.csv'
+
+    word_list: list = file.csvToList(file_name, 2)
+    keyword_list: list = kw.getKeywordList(word_list)
 
     # [output]
     article_list: list = []
 
-    # ページ毎に処理
+    # [ページ毎に処理]
     for url in url_list:
-        page = scrap.Page(url)
-        html = page.html
+        html = scrap.getHTML(url)
         # 必要なデータ抽出
-        article: dict = func.parsePage(html, url, keyword_list)
+        article: dict = scrap.parsePage(html, url, keyword_list)
         article_list.append(article)
 
     result = {

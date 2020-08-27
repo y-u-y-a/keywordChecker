@@ -2,12 +2,25 @@
 {% block content %}
 
 <div class="wm-90">
-  <form action="/form" method="POST" class="pt-2">
-    <p class="mb-1 font-18">記事のリンクを入力してください。</p>
-    <div class="d-flex flex-column">
-      <input name="url_1" value="https://madalis.jp/article/seo-description" type="text" class="col-4 mb-2 text-left">
-      <input name="url_2" value="https://madalis.jp/article/seo-algorithm/" type="text" class="col-4 mb-2 text-left">
-      <input type="submit" value="取得する" class="col-1 mb-2">
+  <form action="/form" method="POST" class="pt-4">
+    <div class="row justify-content-between">
+      <!-- csvファイル -->
+      <div class="col-5 d-flex flex-column">
+        <label class="mb-1 font-18">狙うキーワードを選択してください。</label>
+        <select name="keyword" class="w-40 pointer">
+          <option value="SEO_対策">SEO 対策</option>
+        </select>
+      </div>
+      <!-- 記事リンク -->
+      <div class="col-7 d-flex flex-column">
+        <label class="mb-1 font-18">記事のリンクを入力してください。</label>
+        <input name="url_1" value="https://madalis.jp/article/seo-description" type="text" class="col-8 mb-2 text-left">
+        <input name="url_2" value="https://madalis.jp/article/seo-algorithm" type="text" class="col-8 mb-2 text-left">
+        <input name="url_3" value="https://madalis.jp/article/seo-title" type="text" class="col-8 mb-2 text-left">
+        <input name="url_4" value="https://madalis.jp/article/google-seo" type="text" class="col-8 mb-2 text-left">
+        <input name="url_5" value="https://madalis.jp/article/seo-basic" type="text" class="col-8 mb-2 text-left">
+        <input type="submit" value="取得する" class="col-2 mb-2 pointer">
+      </div>
     </div>
   </form>
 </div>

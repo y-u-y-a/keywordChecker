@@ -5,3 +5,8 @@
 @import "origin/bootstrap-reboot.min.css";
 
 @import "custom.css";
+
+.c-white:hover {
+  color: white;
+  opacity: 0.8;
+}
