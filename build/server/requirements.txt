@@ -4,3 +4,4 @@ lxml
 pyquery
 selenium
 scrapy
+Flask

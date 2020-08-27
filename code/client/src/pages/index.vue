@@ -33,8 +33,8 @@ export default {
 
   methods: {
     async access() {
-      // '/api/'='http://localhost:8000'
-      const res = await axios.get('/api/index');
+      // '/api/'='http://localhost:8000/'
+      const res = await axios.get('/api/');
       let get_list = res.data;
       this.posts = get_list;
     }

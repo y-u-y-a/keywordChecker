@@ -1,0 +1,59 @@
+{% extends "layouts.html" %}
+{% block content %}
+
+<div class="wm-90">
+  <div class="row">
+    <ul class="col-8">
+      <!-- 抽出した記事データ -->
+      {% for article in data.article_list %}
+      <li>
+        <!-- タイトル -->
+        <div class="py-1">
+          <p class="b-font-18 mb-05">{{article.h1}}：</p>
+          <a href="{{ article.url }}" class="d-block">{{ article.url }}</a>
+        </div>
+        <div class="row">
+          <table class="col-3 table table-bordered">
+            <tr class="thead-dark">
+              <th>h2内のキーワード</th>
+            </tr>
+            {% for text in article.h2 %}
+            <tr>
+              <td>{{ text }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+          <table class="col-3 table table-bordered">
+            <tr class="thead-dark">
+              <th>h3内のキーワード</th>
+            </tr>
+            {% for text in article.h3 %}
+            <tr>
+              <td>{{ text }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <!-- キーワードリスト -->
+    <div class="col-4">
+      <table class="table table-bordered">
+        <tr class="thead-dark">
+          <th>キーワード</th>
+          <th>カウント</th>
+        </tr>
+        {% for keyword in data.keyword_list %}
+        <tr>
+          <td>{{ keyword.word }}</td>
+          <td>{{ keyword.count }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

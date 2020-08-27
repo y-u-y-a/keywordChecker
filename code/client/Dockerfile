@@ -2,6 +2,8 @@
 # lts:安定版・alpine:軽量
 FROM node:lts-alpine as build-stage
 
+ENV API_URL="http://localhost:8000/"
+
 # /code生成も
 WORKDIR /code
 

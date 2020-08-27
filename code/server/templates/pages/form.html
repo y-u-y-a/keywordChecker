@@ -1,0 +1,15 @@
+{% extends "layouts.html" %}
+{% block content %}
+
+<div class="wm-90">
+  <form action="/form" method="POST" class="pt-2">
+    <p class="mb-1 font-18">記事のリンクを入力してください。</p>
+    <div class="d-flex flex-column">
+      <input name="url_1" value="https://madalis.jp/article/seo-description" type="text" class="col-4 mb-2 text-left">
+      <input name="url_2" value="https://madalis.jp/article/seo-algorithm/" type="text" class="col-4 mb-2 text-left">
+      <input type="submit" value="取得する" class="col-1 mb-2">
+    </div>
+  </form>
+</div>
+
+{% endblock %}

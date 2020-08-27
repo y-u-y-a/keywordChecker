@@ -1,82 +1,38 @@
 # 標準
-import pprint, csv
+import os, pprint, csv
+# PyPI
+from flask import Flask, jsonify, render_template,request
 # 自作クラス
 from libs import scrap, parse
+# 自作モジュール
+from services import functions as func
 
 
-def getKeywordList(word_list: list):
+# Flaskの標準テンプレートエンジンJinja2(/templates内を自動的に読み込む)
+app = Flask(__name__)
+# 文字化け対処
+app.config['JSON_AS_ASCII'] = False
 
-    result_list: list = []
-
-    for word in word_list:
-        keyword: dict = {
-            'word': word,
-            'count': 0
-        }
-        result_list.append(keyword)
-    return result_list
+# GET =====================================
+@app.route('/')
+def main():
+    return render_template('pages/form.html')
 
 
-# テキスト内に含まれているキーワードのリストを返す
-def extractWord(target_text: str, keyword_list:list) -> list:
-    extracted_list: list = []
-    for keyword in keyword_list:
-        if keyword['word'] in target_text:
-            keyword['count'] += 1
-            extracted_list.append(keyword)
-    return extracted_list
-
-
-# 要素毎にマッチしたワードリストを返す
-def getMatchWords(tag_name: str, el_list: list, keyword_list: list) -> dict:
-
-    match_list: list = []
-
-    for el in el_list:
-        text: str = el.getText()
-        # キーワードリストと照合して一致するワードを抽出
-        word_list: list = extractWord(text, keyword_list)
-        # 重複しないようにmatch_listに追加
-        for w in word_list:
-            if not w['word'] in match_list:
-                match_list.append(w['word'])
-    return {
-        tag_name: match_list
-    }
-
-
-def parsePage(html) -> dict:
-        article: dict = {
-            'url': url
-        }
-        # h1
-        h1_list = html.select('h1')
-        article['h1'] = h1_list[0].getText()
-
-        # h2 -> h3
-        target_tag_list: list = ['h2', 'h3']
-        for tag_name in target_tag_list:
-            el_list: list = html.select(tag_name)
-
-            get_words: dict = getMatchWords(tag_name, el_list, keyword_list)
-            article.update(get_words)
-
-        return article
-
-
-
-if __name__ == "__main__":
+# POST ====================================
+@app.route('/form', methods=['POST'])
+def form():
     # [input]
     url_list: list = [
-        'https://madalis.jp/article/seo-description',
-        # 'https://madalis.jp/article/seo-algorithm/',
+        request.form['url_1'],
+        request.form['url_2'],
         # 'https://madalis.jp/article/seo-title/',
         # 'https://madalis.jp/article/google-seo/',
         # 'https://madalis.jp/article/seo-basic/'
     ]
     file = parse.File()
     word_list: list = file.csvToList('file/keyword_list.csv', 2)
-    keyword_list: list = getKeywordList(word_list)
+    keyword_list: list = func.getKeywordList(word_list)
 
     # [output]
     article_list: list = []
@@ -86,9 +42,18 @@ if __name__ == "__main__":
         page = scrap.Page(url)
         html = page.html
         # 必要なデータ抽出
-        article: dict = parsePage(html)
+        article: dict = func.parsePage(html, url, keyword_list)
         article_list.append(article)
-        # 単なる表示
-        pprint.pprint(article, indent=2)
-        pprint.pprint(keyword_list, indent=2)
-        print('=' * 50)
+
+    result = {
+        'keyword_list': keyword_list,
+        'article_list': article_list
+    }
+    return render_template('pages/result.html', data=result)
+
+
+# '__name__'はこのファイルが呼ばれたファイルの名前が入る(このファイルでは'main')
+if __name__ == '__main__':
+    # webサーバーの立ち上げ
+    port = int(os.getenv('PORT', 8000))
+    app.run(host='0.0.0.0', port=port, debug=True, use_reloader=True)

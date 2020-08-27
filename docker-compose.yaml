@@ -18,21 +18,22 @@ services:
       - ./code/server:/code
     ports:
       - 8000:8000
-    working_dir: /code # コンテナ起動時のディレクトリを指定
-    tty: true # コンテナを立ち上げっぱなしにする（ttyとは、標準出力の接続先デバイス）
+    working_dir: /code # コンテナ起動時
+    command: 'python3 main.py'
+    # tty: true # コンテナを立ち上げっぱなしにする（ttyとは、標準出力の接続先デバイス）
     networks:
       - default
     # depends_on:
     #   - mysql
 
-  client:
-    container_name: keywordChecker_client
-    build:
-      context: ./code/client
-    ports:
-      - 3000:80
-    networks:
-      - default
+  # client:
+  #   container_name: keywordChecker_client
+  #   build:
+  #     context: ./code/client
+  #   ports:
+  #     - 3000:80
+  #   networks:
+  #     - default
 
 
 # defaultのネットワークを使用
