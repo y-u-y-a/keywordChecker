@@ -7,4 +7,5 @@ scrapy
 Flask
 google-ads
 selenium
-chromedriver-binary==84.0.4147.30.0
+# http://chromedriver.chromium.org/downloads
+chromedriver-binary==85.0.4183.87
