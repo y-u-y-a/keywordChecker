@@ -5,3 +5,6 @@ pyquery
 selenium
 scrapy
 Flask
+google-ads
+selenium
+chromedriver-binary==84.0.4147.30.0

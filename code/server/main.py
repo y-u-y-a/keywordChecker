@@ -1,7 +1,7 @@
 # 標準
 import os, pprint, csv
 # PyPI
-from flask import Flask, jsonify, render_template,request
+from flask import Flask, jsonify, render_template,request, redirect, abort, url_for
 # 自作モジュール
 from libs import scrap, file
 from libs import keyword as kw
@@ -14,7 +14,7 @@ app.config['JSON_AS_ASCII'] = False # 文字化け対処
 
 # GET =====================================
 @app.route('/')
-def main():
+def top():
     return render_template('pages/form.html')
 
 
@@ -56,6 +56,22 @@ def form():
         'article_list': article_list
     }
     return render_template('pages/result.html', data=result)
+
+
+# エラーハンドリング
+@app.route('/error')
+def intentionalError():
+    # return redirect(url_for('top'))
+    return abort(500, 'エラー発生')
+
+@app.errorhandler(404)
+def pageNotFound(e):
+    return render_template('errors/404.html'), 404
+
+@app.errorhandler(500)
+def systemError(e):
+    err_message = e.description
+    return render_template('errors/system_error.html', err_message=err_message), 500
 
 
 # '__name__'はこのファイルが呼ばれたファイルの名前が入る(このファイルでは'main')

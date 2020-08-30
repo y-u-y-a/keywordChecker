@@ -19,8 +19,8 @@ services:
     ports:
       - 8000:8000
     working_dir: /code # コンテナ起動時
-    command: 'python3 main.py'
-    # tty: true # コンテナを立ち上げっぱなしにする（ttyとは、標準出力の接続先デバイス）
+    # command: 'python3 main.py'
+    tty: true # コンテナを立ち上げっぱなしにする（ttyとは、標準出力の接続先デバイス）
     networks:
       - default
     # depends_on:
