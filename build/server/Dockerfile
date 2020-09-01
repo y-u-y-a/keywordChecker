@@ -16,7 +16,7 @@ RUN sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc
 
 # Don't create "/__pycache__"
 ENV PYTHONDONTWRITEBYTECODE=1
-# chromedriver-binaryのパスを通す
+#  Pass through the path
 ENV PATH=$PATH:usr/bin/google-chrome
 
 

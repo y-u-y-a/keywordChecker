@@ -41,10 +41,6 @@ networks:
   default:
     external: false
 
-volumes:
-  node-packages:
-    external: false
-
 # volumes:
 #   mysql-data:
 #     external: false

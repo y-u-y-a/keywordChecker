@@ -3,7 +3,7 @@ import requests, time
 from bs4 import BeautifulSoup
 
 
-def getHTML(url: str):
+def get_html(url: str):
     time.sleep(1)
     res = requests.get(url)
     res.encoding = res.apparent_encoding
@@ -12,7 +12,7 @@ def getHTML(url: str):
     return html
 
 
-def parsePage(html, url, keyword_list) -> dict:
+def parse_page(html, url, keyword_list) -> dict:
         article: dict = {
             'url': url
         }
@@ -25,14 +25,14 @@ def parsePage(html, url, keyword_list) -> dict:
         for tag_name in target_tag_list:
             el_list: list = html.select(tag_name)
 
-            get_words: dict = getMatchWords(tag_name, el_list, keyword_list)
+            get_words: dict = get_match_word(tag_name, el_list, keyword_list)
             article.update(get_words)
 
         return article
 
 
 # 要素毎にマッチしたワードをdictを返す
-def getMatchWords(tag_name: str, el_list: list, keyword_list: list) -> dict:
+def get_match_word(tag_name: str, el_list: list, keyword_list: list) -> dict:
 
     result_list: list = [] # 戻り値用
     match_list: list = [] # 照合用
@@ -40,7 +40,7 @@ def getMatchWords(tag_name: str, el_list: list, keyword_list: list) -> dict:
     for el in el_list:
         text: str = el.getText()
         # キーワードリストと照合して一致するワードを抽出
-        word_list: list = extractWord(text, keyword_list)
+        word_list: list = extract_word(text, keyword_list)
         # 重複しないようにmatch_listに追加
         for w in word_list:
             if not w['word'] in match_list:
@@ -52,7 +52,7 @@ def getMatchWords(tag_name: str, el_list: list, keyword_list: list) -> dict:
 
 
 # テキスト内に含まれているキーワードのリストを返す
-def extractWord(target_text: str, keyword_list:list) -> list:
+def extract_word(target_text: str, keyword_list: list) -> list:
     extracted_list: list = []
     for keyword in keyword_list:
         if keyword['word'] in target_text:

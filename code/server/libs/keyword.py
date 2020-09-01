@@ -1,6 +1,6 @@
 
 # dictのリスト形式で返す
-def getKeywordList(word_list: list):
+def get_keyword_list(word_list: list):
 
     result_list: list = []
 

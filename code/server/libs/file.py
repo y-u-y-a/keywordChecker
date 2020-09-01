@@ -1,8 +1,7 @@
-# 標準
 import csv
 
 # 列番目を指定してcsvからリストを返す
-def csvToList(csv_file_name: str, column_index: int) -> list:
+def csv_to_list(csv_file_name: str, column_index: int) -> list:
 
     result_list: list = []
 

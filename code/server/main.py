@@ -38,17 +38,17 @@ def form():
     if get_keyword == 'SEO_対策':
         file_name: str = 'libs/keyword_list.csv'
 
-    word_list: list = file.csvToList(file_name, 2)
-    keyword_list: list = kw.getKeywordList(word_list)
+    word_list: list = file.csv_to_list(file_name, 2)
+    keyword_list: list = kw.get_keyword_list(word_list)
 
     # [output]
     article_list: list = []
 
     # [ページ毎に処理]
     for url in url_list:
-        html = scrap.getHTML(url)
+        html = scrap.get_html(url)
         # 必要なデータ抽出
-        article: dict = scrap.parsePage(html, url, keyword_list)
+        article: dict = scrap.parse_page(html, url, keyword_list)
         article_list.append(article)
 
     result = {
