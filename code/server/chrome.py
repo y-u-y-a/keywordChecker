@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 # 環境変数の設定
-import libs.config
+import libs.config as conf
 
 def getScreenShot(driver):
     dt = datetime.datetime.today()
@@ -47,8 +47,8 @@ if __name__ == '__main__':
     options = Options()
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
-    options.binary_location = config.CHROMEDRIVER_BINARY_PATH
-    chrome_driver = webdriver.Chrome(config.CHROMEDRIVER_PATH, options=options)
+    options.binary_location = conf.CHROMEDRIVER_BINARY_PATH
+    chrome_driver = webdriver.Chrome(conf.CHROMEDRIVER_PATH, options=options)
 
     # 処理
     try:
