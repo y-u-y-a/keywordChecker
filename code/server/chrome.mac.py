@@ -16,22 +16,23 @@ def get_screen_shot(driver):
 
 
 def chrome(driver, get_url: str):
-    driver.get(get_url)
+    # max wait time
+    wait = WebDriverWait(driver, 10)
     # ログイン
+    driver.get(get_url)
     driver.find_element_by_id('user_email').send_keys(conf.WANTEDLY_ID)
     driver.find_element_by_id('user_password').send_keys(conf.WANTEDLY_PASSWORD)
     driver.find_element_by_name('commit').click()
     time.sleep(2)
-    # メッセージ
+    # 全てのメッセージ表示
     driver.get('https://www.wantedly.com/enterprise/messages')
-    time.sleep(2)
-    # 全てのメッセージ
-    driver.find_element_by_xpath('//li[contains(text(), "すべてのメッセージ")]').click()
-    time.sleep(2)
+    ele = driver.find_element_by_xpath("//li[contains(text(), 'すべてのメッセージ')]")
+    wait.until(EC.element_to_be_clickable(ele))
+    ele.click()
     return
     # 応募者一覧を取得
-    # user_list = driver.find_elements_by_class_name('MessageThreadListItem--date')
-    # time.sleep(2)
+    user_list = driver.find_elements_by_class_name('MessageThreadListItem--date')
+    time.sleep(2)
     # user_name_list = []
     # for user in user_list:
     #     name = user.find_element_by_tag_name('a')
