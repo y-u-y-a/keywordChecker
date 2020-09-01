@@ -1,17 +1,17 @@
-FROM python:3.7
+FROM python:3.7-slim-buster
 
 # Install into Debian
-RUN apt-get update && \
-    apt-get install -y sudo wget gnupg2 vim && \
+RUN apt-get update \
+    && apt-get install -y sudo wget gnupg2 vim \
     # set Japanese
-    apt-get install fonts-ipafont-gothic fonts-ipafont-mincho
+    && apt-get install fonts-ipafont-gothic fonts-ipafont-mincho
 
 
 # Install Chrome (Chromeのリポジトリを追加, 公開鍵の登録)
-RUN sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
-    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-    apt-get update && \
-    apt-get install -y google-chrome-stable
+RUN sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable
 
 
 # Don't create "/__pycache__"

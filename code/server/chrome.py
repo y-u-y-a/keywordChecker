@@ -8,11 +8,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 # 環境変数の設定
-import config
+import libs.config
 
 def getScreenShot(driver):
     dt = datetime.datetime.today()
-    now: str = dt.strftime('%Y%m%d%H%M%S')
+    now = dt.strftime('%Y%m%d%H%M%S')
     return driver.save_screenshot(f'images/{now}.png')
 
 

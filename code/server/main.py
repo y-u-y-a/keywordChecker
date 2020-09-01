@@ -36,7 +36,7 @@ def form():
 
     get_keyword: str = 'SEO_対策'
     if get_keyword == 'SEO_対策':
-        file_name: str = 'file/keyword_list.csv'
+        file_name: str = 'libs/keyword_list.csv'
 
     word_list: list = file.csvToList(file_name, 2)
     keyword_list: list = kw.getKeywordList(word_list)
